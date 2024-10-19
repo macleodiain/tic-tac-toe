@@ -46,14 +46,13 @@ class Game
   def get_next_move
     puts "Please enter your move:"
     player_choice = gets.chomp.to_i
-    #HERE^
     #if player enters anything other than a number player_choice.to_i returns a 0
     #if the player choice is a number outside of the accepted range (1..9) then an error message is shown and get_next_move is called again
     
     if player_choice.between?(1,9)
       #if the user choice is within bounds, check if they have chosen a valid cell
       #i.e. that cell is not already occupied by a previous choice
-      #choice_to_coords changes the users 1..9 into an array coord i.e. 1 is [0,0], 2 is [0,1] etc
+      #choice_to_coords changes the users 1..9 into an array coord i.e. 1 is [2,0], 2 is [2,1] etc
       if(@board.valid_cell?(choice_to_coords(player_choice)))
         #if the cell is valid, apply the change to the board with the current players token
         @board.apply_move(choice_to_coords(player_choice), @token)
