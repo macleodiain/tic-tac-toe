@@ -1,7 +1,7 @@
 class Board
  
   def initialize
-    #create a 3x3 array, set - as the default value.  This represents an empty cell.
+    #create a 3x3 array, set "-" as the default value.  This represents an empty cell.
     @board = Array.new(3){ Array.new(3, "-")}
    
   end
@@ -13,8 +13,8 @@ class Board
       row.each do |cell|
         print "| #{cell} "
       end
-      print "|"
-      print "\n"
+      print "|\n"
+      
       print "-------------\n"
     end
   end
@@ -67,7 +67,7 @@ class Board
         end
       end
 
-       
+       #if no win found on the board, return false
     return false
   end
 

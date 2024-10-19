@@ -1,5 +1,5 @@
 class Game
-  require '~/odin-project/ruby-repos/tic-tac-toe/board.rb'
+  require_relative 'board.rb'
 
   def initialize
     #current turn starts at zero.  This is used to track which players turn it is
@@ -12,17 +12,17 @@ class Game
     @board = Board.new
     #welcome message when starting the game
     puts "Welcome to Tic Tac Toe"
-    puts "Enter a number between 1 and 9 to choose a cell as shown below"
+    puts "Enter a number between 1 and 9 to select where you want to place your mark"
+    puts "Board is laid out like the number pad on your keyboard"
     puts  "---------------"
-    puts  "| 1 || 2 || 3 |"
+    puts  "| 7 || 8 || 9 |"
     puts  "---------------"
     puts  "| 4 || 5 || 6 |"
     puts  "---------------"
-    puts  "| 7 || 8 || 9 |"
+    puts  "| 1 || 2 || 3 |"
     puts  "---------------\n"
     puts "Please choose between 1-9 representing which cell you want to pick:"
     puts "Current player is: #{@current_player}"
-    # @board.print_board
     get_next_move
    
   end
@@ -86,11 +86,11 @@ class Game
     #turns the players 1..9 choice to a coordinate that we can check on our board
     case player_choice
     when 1
-      [0,0]
+      [2,0]
     when 2
-      [0,1]
+      [2,1]
     when 3
-      [0,2]
+      [2,2]
     when 4
       [1,0]
     when 5
@@ -98,11 +98,11 @@ class Game
     when 6
       [1,2]
     when 7
-      [2,0]
+      [0,0]
     when 8
-      [2,1]
+      [0,1]
     when 9
-      [2,2]
+      [0,2]
     end
   end
 
