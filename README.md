@@ -9,6 +9,7 @@ Implement tictactoe in the console using reasonable OOP fundementals.
 User is asked to enter a number between 1 and 9, representing their choice of cell on the board.
 
 The board is laid out as below to mimic the layout of the num pad.
+
 ---------------
 | 7 || 8 || 9 |
 ---------------
