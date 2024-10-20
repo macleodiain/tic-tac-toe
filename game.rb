@@ -1,6 +1,8 @@
 class Game
   require_relative 'lib/board'
   require_relative 'lib/player'
+
+  require 'colorize'
  
 
   def initialize
@@ -11,6 +13,7 @@ class Game
     @current_player = @players.first
     #token is X or O.  Player one is always X
     @token = @current_player.player_token
+    
     #create new board object.  Board contains the 3x3 array that represents the board and various methods for affecting the board
     @board = Board.new
     #welcome message when starting the game
@@ -26,7 +29,7 @@ class Game
     puts  "---------------\n"
     puts "Please choose between 1-9 representing which cell you want to pick:"
     puts "Hit CTRL + C to quit\n\n"
-    puts "Current player is: #{@current_player.player_name}"
+    puts "Current player is: #{@current_player.player_name.colorize(@current_player.player_color)}"
     get_next_move
    
   end
@@ -57,7 +60,7 @@ class Game
       
     end
     @token = @current_player.player_token
-    puts "Curent Player is: #{@current_player.player_name}"
+    puts "Curent Player is: #{@current_player.player_name.colorize(@current_player.player_color)}"
   end
 
   def get_next_move
@@ -74,6 +77,7 @@ class Game
       if(@board.valid_cell?(choice_to_coords(player_choice)))
         #if the cell is valid, apply the change to the board with the current players token
         @board.apply_move(choice_to_coords(player_choice), @token)
+        puts `clear`
         #print the board to show the move
         @board.print_board
         
@@ -88,13 +92,13 @@ class Game
         get_next_move
       else
         #error message for if the chosen cell is not valid
-        puts "That cell is already chosen"
+        puts "That cell is already chosen".colorize(:red)
         #call get_next_move and try again
         get_next_move
       end
     else
       #error message for a value outside of 1..9 or a letter/string etc
-      puts "Invalid move entered."
+      puts "Invalid move entered.".colorize(:red)
       get_next_move
     end
   rescue Interrupt => e
@@ -128,7 +132,7 @@ class Game
   end
 
   def game_won(current_player)
-    puts "#{current_player.player_name} won the game!"
+    puts "#{current_player.player_name.colorize(@current_player.player_color)} won the game!"
     exit
   end
 
