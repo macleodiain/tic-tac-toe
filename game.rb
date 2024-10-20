@@ -1,5 +1,6 @@
 class Game
   require_relative 'lib/board.rb'
+ 
 
   def initialize
     #current turn starts at zero.  This is used to track which players turn it is
@@ -22,6 +23,7 @@ class Game
     puts  "| 1 || 2 || 3 |"
     puts  "---------------\n"
     puts "Please choose between 1-9 representing which cell you want to pick:"
+    puts "Hit CTRL + C to quit\n\n"
     puts "Current player is: #{@current_player}"
     get_next_move
    
@@ -44,6 +46,7 @@ class Game
   end
 
   def get_next_move
+    begin
     puts "Please enter your move:"
     player_choice = gets.chomp.to_i
     #if player enters anything other than a number player_choice.to_i returns a 0
@@ -79,6 +82,10 @@ class Game
       puts "Invalid move entered."
       get_next_move
     end
+  rescue Interrupt => e
+    puts "\nExiting game - Thanks for playing!"
+    exit
+  end
   end
 
   def choice_to_coords(player_choice)
