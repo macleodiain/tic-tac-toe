@@ -1,14 +1,16 @@
 class Game
-  require_relative 'lib/board.rb'
+  require_relative 'lib/board'
+  require_relative 'lib/player'
  
 
   def initialize
     #current turn starts at zero.  This is used to track which players turn it is
     @current_turn = 0
-    #denotes which player is currently playing.  May allow users to choose names in future.
-    @current_player = "Player One"
+    @players = get_players
+    #denotes which player is currently playing. 
+    @current_player = @players.first
     #token is X or O.  Player one is always X
-    @token = "X"
+    @token = @current_player.player_token
     #create new board object.  Board contains the 3x3 array that represents the board and various methods for affecting the board
     @board = Board.new
     #welcome message when starting the game
@@ -24,9 +26,21 @@ class Game
     puts  "---------------\n"
     puts "Please choose between 1-9 representing which cell you want to pick:"
     puts "Hit CTRL + C to quit\n\n"
-    puts "Current player is: #{@current_player}"
+    puts "Current player is: #{@current_player.player_name}"
     get_next_move
    
+  end
+
+  def get_players
+    #gets then returns an array containing the two player objects
+    players = []
+    puts "Please enter player one name:"
+    players << Player.new
+    puts "Please enter player two name:"
+    players << Player.new
+
+    players
+
   end
 
   def change_turn
@@ -35,14 +49,15 @@ class Game
     #even number turns are player one, odds are player two
     if @current_turn.even?
       #change the current player
-      @current_player = "Player One"
+      @current_player = @players[0]
       #change the token used to mark the board
-      @token = "X"
+      
     else
-      @current_player = "Player Two"
-      @token = "O"
+      @current_player = @players[1]
+      
     end
-    puts "Curent Player is: #{@current_player}"
+    @token = @current_player.player_token
+    puts "Curent Player is: #{@current_player.player_name}"
   end
 
   def get_next_move
@@ -113,7 +128,7 @@ class Game
   end
 
   def game_won(current_player)
-    puts "#{current_player} won the game!"
+    puts "#{current_player.player_name} won the game!"
     exit
   end
 
