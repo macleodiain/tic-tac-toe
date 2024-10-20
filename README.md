@@ -23,4 +23,7 @@ The game will check after each turn for win conditions and when it finds one or 
 
 The biggest hurdle by far in this project was the logic for checking win conditions.  There is no doubt a more efficient or simnpler way of checking for win conditions but for now i am satisfied that it meets the basic requirements.
 
-The game_won? method that checks for win conditions is also quite messy. It could probably be split up into smaller methods, one checking rows, one checking columns and one checking diagonals.  I will look into that in the future.  I could also add the ability to get player names.
+The game_won? method that checks for win conditions is also quite messy. It could probably be split up into smaller methods, one checking rows, one checking columns and one checking diagonals.  I will look into that in the future.  
+
+Update:
+I have now updated the ability to name the players and ive added functionality to allow the user to quit the game without finishing it.
