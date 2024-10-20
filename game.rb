@@ -1,5 +1,5 @@
 class Game
-  require_relative 'board.rb'
+  require_relative 'lib/board.rb'
 
   def initialize
     #current turn starts at zero.  This is used to track which players turn it is
