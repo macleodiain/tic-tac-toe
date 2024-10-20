@@ -2,7 +2,7 @@ class Player
   #number of player objects created.  Used later to make sure player one is assigned X and player two is assigned O
 @@NUMBER_OF_PLAYERS = 0
 #accessor methods for name and token
-attr_accessor :player_name, :player_token
+attr_accessor :player_name, :player_token, :player_color
   def initialize
     #get the player name
     @player_name = gets.chomp
